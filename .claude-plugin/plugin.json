@@ -1,0 +1,6 @@
+{
+  "name": "claude-sage",
+  "version": "1.0.0",
+  "description": "Workflow system for Claude Code: Analyze First, Fix Later",
+  "license": "MIT"
+}

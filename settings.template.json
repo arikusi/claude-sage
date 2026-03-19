@@ -1,0 +1,78 @@
+{
+  "model": "sonnet",
+  "alwaysThinkingEnabled": true,
+
+  "permissions": {
+    "defaultMode": "default",
+    "disableBypassPermissionsMode": "disable",
+    "allow": [
+      "Bash(npm:*)",
+      "Bash(git:*)",
+      "Bash(python:*)",
+      "Bash(node:*)",
+      "Bash(pip:*)",
+      "Bash(cargo:*)",
+      "Read(*)",
+      "Grep(*)",
+      "Glob(*)"
+    ],
+    "deny": [
+      "Bash(rm:-rf:*)",
+      "Bash(rm:-fr:*)",
+      "Bash(del:*)",
+      "Bash(format:*)",
+      "Bash(dd:*)",
+      "Bash(git:push:--force:*)"
+    ]
+  },
+
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'File updated: $FILE'"
+          }
+        ]
+      }
+    ],
+    "WorktreeCreate": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '🌿 Worktree created — controlled-fixer is working in isolation'"
+          }
+        ]
+      }
+    ],
+    "WorktreeRemove": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '🧹 Worktree removed'"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '❌ Session ended with an error'"
+          }
+        ]
+      }
+    ]
+  },
+
+  "env": {
+    "MAX_THINKING_TOKENS": "31999",
+    "ENABLE_TOOL_SEARCH": "auto",
+    "NODE_ENV": "development"
+  }
+}
